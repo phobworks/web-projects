@@ -16,7 +16,7 @@
     <title>Integrated Energy Services Limited</title>
   </head>
   <body>
-    <header class="header__contact">
+    <header class="header__projects">
       <nav>
         <div class="container nav__container">
           <a href="index.html" class="nav__logo"><img src="/images/logo.png" alt="" /></a>
@@ -44,74 +44,39 @@
       <section class="about-banner__section">
         <div class="container about-banner__container">
           <div class="about-banner__content">
-            <small><i id="bannerRating" class="fa-solid fa-star"></i> <span>Energy Services Redefined</span> </small>
-            <h2>Contact Us</h2>
-            <p>Let's Work Together</p>
+            <small><i id="bannerRating" class="fa-solid fa-star"></i> <span>Driven by Vision, Proven by Results</span> </small>
+            <h2>Projects</h2>
+            <p>Our history reflects dedication, resilience, and an unwavering commitment to excellence.</p>
           </div>
         </div>
       </section>
       <!-- ======== Banner section section ends ========= -->
     </header>
 
-    <!--========= Products section starts ========= -->
-    <section class="contact__section" id="get-proposal">
-      <div class="container contact__container">
-        <div class="contact__content">
-          <div class="contact__left">
-            <div class="contact__address">
-              <p><i class="fa-solid fa-location-dot"></i> Voke's Court, Plot 22 Haruk Road, Off Obiwali Road, Rumuigbo, Port Harcourt, Rivers State.</p>
-              <p><i class="fa-solid fa-phone"></i>+234-817-7243-549, +234-803-340-1947</p>
-              <p><i class="fa-solid fa-phone"></i>Managing Director +234-803-3401-947</p>
-              <p><i class="fa-solid fa-envelope"></i>iesl22@yahoo.com</p>
-            </div>
-            <div class="footer__map">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.4975044364846!2d6.980901474739946!3d4.855958195119702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1069ce2043a0d467%3A0x7e8a97911a024de1!2s22%20Haruk%20Estate%20Link%20Road%2C%20Rumuigbo%2C%20Port%20Harcourt%20500272%2C%20Rivers!5e0!3m2!1sen!2sng!4v1749661561642!5m2!1sen!2sng"
-                width="100%"
-                height="400"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-          </div>
-          <div class="contact__right">
-            <div id="successMessage" class="message success">Message sent successfully!</div>
-            <div id="errorMessage" class="message error">Failed to send message. Please try again.</div>
-            <h3>Request a Proposal</h3>
-            <form id="contactForm" onsubmit="validateForm(event)" class="contact__form">
-              <label>Full Name</label>
-              <input type="text" name="full_name" id="full_name" placeholder="Enter your name" />
-              <div class="error-message" id="full_nameError"></div>
-
-              <label>Email</label>
-              <input type="email" name="email" id="email" placeholder="Enter your email" />
-              <div class="error-message" id="emailError"></div>
-
-              <label>Phone Number</label>
-              <input type="tel" name="phone" id="phone" placeholder="Enter your phone number" />
-              <div class="error-message" id="phoneError"></div>
-
-              <label>Company (Optional)</label>
-              <input type="text" name="company" id="company" placeholder="Enter your company name" />
-
-              <label>Subject</label>
-              <input type="text" name="subject" id="subject" placeholder="Enter subject" />
-              <div class="error-message" id="subjectError"></div>
-
-              <label>Message</label>
-              <textarea name="message" id="message" rows="4" placeholder="Enter your message"></textarea>
-              <div class="error-message" id="messageError"></div>
-
-              <button type="submit">Send Message</button>
-            </form>
-          </div>
-        </div>
+    <!--========= Projects section starts ========= -->
+    <div class="projects__section container">
+      <h3>PROJECTS & EXPERIENCE</h3>
+      <input type=" text" id="searchInput" placeholder="Search..." />
+      <p id="noMatchMessage" style="display: none; color: red">No matching word found.</p>
+      <div class="projects__container">
+        <table class="dcf-table dcf-table-responsive dcf-table-bordered dcf-table-striped dcf-w-100%">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>PROJECT DESCRIPTION</th>
+              <th>CLIENT</th>
+              <th>DATE</th>
+              <!-- <th>DATE EXECUTED</th> -->
+              <th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
       </div>
-    </section>
+      <div class="pagination" id="paginationContainer"></div>
+    </div>
 
-    <!--========= Products section ends ========= -->
+    <!--========= Projects us section ends ========= -->
 
     <!-- ========= Footer home page section starts ======== -->
     <footer class="footer__section">
@@ -175,45 +140,6 @@
     </footer>
     <!-- ========= Footer home page section ends ======== -->
 
-    <script>
-      function validateForm(event) {
-        event.preventDefault();
-        let isValid = true;
-        const form = document.getElementById("contactForm");
-        const formData = new FormData(form);
-        const successMessage = document.getElementById("successMessage");
-        const errorMessage = document.getElementById("errorMessage");
-        successMessage.style.display = "none";
-        errorMessage.style.display = "none";
-
-        document.querySelectorAll(".error-message").forEach((e) => (e.textContent = ""));
-
-        formData.forEach((value, key) => {
-          if (key !== "company" && !value.trim()) {
-            document.getElementById(`${key}Error`).textContent = "This field is required";
-            isValid = false;
-          }
-        });
-
-        if (isValid) {
-          fetch("send_email.php", {
-            method: "POST",
-            body: formData,
-          })
-            .then((response) => response.text())
-            .then((data) => {
-              if (data === "success") {
-                successMessage.style.display = "block";
-                form.reset();
-              } else {
-                errorMessage.style.display = "block";
-              }
-            })
-            .catch(() => {
-              errorMessage.style.display = "block";
-            });
-        }
-      }
-    </script>
+    <script defer type="module" src="./js/projects.js"></script>
   </body>
 </html>
