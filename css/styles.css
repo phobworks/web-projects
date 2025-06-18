@@ -515,6 +515,10 @@ nav.window-scrolled {
   object-fit: cover;
 }
 
+.swiper-slide source {
+  aspect-ratio: 4/3;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
   font-weight: bolder;
